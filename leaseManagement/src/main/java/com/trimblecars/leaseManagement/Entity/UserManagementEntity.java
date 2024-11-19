@@ -100,7 +100,7 @@ public class UserManagementEntity {
 
 	@Column(name = "user_name")
 	private String userName;
-
+//
 	@Column(name = "user_email_id")
 	private String userEmailId;
 

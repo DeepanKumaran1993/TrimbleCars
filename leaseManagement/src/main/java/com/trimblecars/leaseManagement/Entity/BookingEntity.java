@@ -1,6 +1,7 @@
 package com.trimblecars.leaseManagement.Entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.trimblecars.leaseManagement.deserializer.CarEntityDeserializer;
@@ -21,18 +22,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class BookingEntity {
 
-//	user_id *
-//	lease_start_date
-//	lease_end_date
-//	booking_date
-//	car_id
-//	booking_id
-
+	/*
+	 * // user_id * // lease_start_date // lease_end_date // booking_date // car_id
+	 * // booking_id
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "booking_id")
@@ -45,7 +40,7 @@ public class BookingEntity {
 	private Date leaseEndDate;
 
 	@Column(name = "booking_date")
-	private Date bookingDate;
+	private LocalDate bookingDate;
 
 	@Nullable
 	@Column(name = "booking_status")
@@ -60,19 +55,18 @@ public class BookingEntity {
 
 //	@MapsId
 	// @OneToOne
-	
+
 	@ManyToOne
-	@JoinColumn(name = "car_id", referencedColumnName = "car_id" )
-	@JsonDeserialize(using=CarEntityDeserializer.class)
+	@JoinColumn(name = "car_id", referencedColumnName = "car_id")
+	@JsonDeserialize(using = CarEntityDeserializer.class)
 	private CarEntity carsId;
 
 	public BookingEntity() {
 		super();
 	}
 
-	public BookingEntity(Integer bookingID, Date leaseStartDate, Date leaseEndDate, Date bookingDate,
-			String bookingStatus, UserManagementEntity userId,
-			 CarEntity carsId) {
+	public BookingEntity(Integer bookingID, Date leaseStartDate, Date leaseEndDate, LocalDate bookingDate,
+			String bookingStatus, UserManagementEntity userId, CarEntity carsId) {
 		super();
 		this.bookingID = bookingID;
 		this.leaseStartDate = leaseStartDate;
@@ -107,11 +101,11 @@ public class BookingEntity {
 		this.leaseEndDate = leaseEndDate;
 	}
 
-	public Date getBookingDate() {
+	public LocalDate getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

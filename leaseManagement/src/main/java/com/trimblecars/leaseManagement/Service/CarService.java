@@ -14,13 +14,11 @@ public class CarService {
 
 	@Autowired
 	CarRepository carRepo;
-	
-	 public ResponseEntity<String> saveCar(CarEntity car){
-		 
-		 carRepo.save(car);
-		 return new ResponseEntity<String> ("car Created ",HttpStatus.OK);
-	 }
-	
-	
-	
+
+	public ResponseEntity<String> saveCar(CarEntity car) {
+
+		carRepo.save(car);
+		return new ResponseEntity<String>("car Created ", HttpStatus.OK);
+	}
+
 }

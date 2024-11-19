@@ -16,14 +16,14 @@ import java.io.IOException;
 @Component
 public class CarEntityDeserializer extends JsonDeserializer<CarEntity> {
 
-    @Autowired
-    private CarRepository carRepository;
-    // Your repository to fetch UserManagementEntity by ID
+	@Autowired
+	private CarRepository carRepository;
+	// Your repository to fetch UserManagementEntity by ID
 
-    @Override
-    public CarEntity deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
-        Integer userId =  jsonParser.getIntValue();
-        		//.getLongValue(); // Extract user ID from JSON
-        return carRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-    }
+	@Override
+	public CarEntity deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
+		Integer userId = jsonParser.getIntValue();
+		// .getLongValue(); // Extract user ID from JSON
+		return carRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+	}
 }

@@ -11,5 +11,7 @@ public interface UserRepository extends JpaRepository<UserManagementEntity, Inte
 
 	Optional<UserManagementEntity> findById(Integer userId);
 
+	void save(Optional<UserManagementEntity> oldUser);
+
 	
 }
