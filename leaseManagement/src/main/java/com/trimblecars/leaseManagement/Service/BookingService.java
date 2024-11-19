@@ -21,7 +21,11 @@ import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
 import com.trimblecars.leaseManagement.Repository.BookingRepository;
 import com.trimblecars.leaseManagement.Repository.CarRepository;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class BookingService {
 
 	@Autowired

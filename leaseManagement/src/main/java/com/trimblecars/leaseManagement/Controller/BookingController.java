@@ -37,7 +37,7 @@ public class BookingController {
 	
 	
 	
-	//this call for getting avaliable car from Date Base
+	//this call for getting avaliable car from DateBase
 	@PostMapping("/getCars")
 	public ResponseEntity<List<CarEntity>> getAvailableCarList(@RequestBody BookingEntity bookingEntity){
 	
