@@ -1,7 +1,11 @@
 package com.trimblecars.leaseManagement.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +22,16 @@ public class CarController {
 	private CarService carService;
 
 	@PostMapping(path = "/saveCar")
-	public ResponseEntity<String> saveCar(@RequestBody CarEntity car) {
+	public ResponseEntity<String> addCarDetail(@RequestBody CarEntity car) {
 
-		System.err.println( car.toString());
+		System.err.println(car.toString());
 		return carService.saveCar(car);
+	}
+
+	@GetMapping(path = "/getCar/{carId}")
+	public ResponseEntity<?> getCarDetails(@PathVariable Integer carId) {
+ 
+		return carService.getCarsByOwnerId(carId);
 	}
 
 }

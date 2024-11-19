@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
@@ -23,19 +25,18 @@ import com.trimblecars.leaseManagement.Repository.CarRepository;
 public class BookingService {
 
 	@Autowired
-	BookingRepository bookingRepository;
-	
+	private BookingRepository bookingRepository;
+
 	@Autowired
-	CarRepository carRepository;
+	private CarRepository carRepository;
+	
+
 
 	public ResponseEntity<String> getBooking(BookingEntity bookingEntity) {
 
-		
 		System.err.println(bookingEntity.getUserId().getUserId());
-		
-		
-		
-		// get booked user count  from table based on user_id
+
+		// get booked user count from table based on user_id
 		Integer bookedCarsCount = bookingRepository.countBookedCarsByUser(bookingEntity.getUserId().getUserId());
 
 //		 System.err.println(bookedCarsCount);
@@ -43,160 +44,79 @@ public class BookingService {
 //	            throw new RuntimeException("User cannot book more than 2 cars with status 'Booked'.");
 //	        }
 
-		 
-		 
-		 //date validation for booking 
-		 //if True cars are already booked else is avliable
-	boolean check=	 validateBooking(bookingEntity.getCarsId().getCarID(),
-				bookingEntity.getLeaseStartDate().toLocalDate() 
-				,bookingEntity.getLeaseEndDate().toLocalDate());
-		 
-		 
-	System.err.println(check);
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 		
-		
-		
-		if (validateStartDate(bookingEntity) && 
-				BookingService.validateEndDate(bookingEntity)) {
+		// date validation for booking *if True cars are already booked else is avaliable
+
+		if (bookedCarsCount >= 2 ) {
 			
-			  bookingEntity.setBookingDate(getTodayDate());
-			  
-			  
-			  CarEntity carStatus=
-					  carRepository.findById(bookingEntity.getCarsId().getCarID())
-					  .orElseThrow(()->new RuntimeException("car not found"));
-			  
-			  carStatus.setCarStatus("booked");
-			  
-			            carRepository.save(carStatus);
-			  
-					  
-					   bookingRepository.save(bookingEntity);
-			
-			return ResponseEntity.accepted().body("date are valid");
-		} else
-			return ResponseEntity.badRequest().body("booking date is invalid");
-		
-	}
-	
-	
-	
-	
-	//validate the give dates are not taken
-	 public boolean validateBooking(Integer carId, LocalDate startDate, LocalDate endDate) {
-	        return bookingRepository.isCarAlreadyBooked(carId, startDate, endDate);
-	    }
-
-//	    public BookingEntity addBooking(BookingEntity booking) {
-//	        boolean isBooked = validateBooking(
-//	            booking.getCarId().getCarId(),
-//	            booking.getLeaseStartDate(),
-//	            booking.getLeaseEndDate()
-//	        );
-//
-//	        if (isBooked) {
-//	            throw new IllegalStateException("Car is already booked for the given dates");
-//	        }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//getting Local date Formatted version
-	public static LocalDate getTodayDate() {
-
-		LocalDate today = LocalDate.now();
-		DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		dateformatter.format(today);
-		// System.err.println(formattedTodayDate);
-		return today;
-	}
-
-	//validate booking end Date
-	public static Boolean validateEndDate(BookingEntity booking) {
-
-		return booking.getLeaseEndDate().toLocalDate().
-				isBefore(booking.getLeaseStartDate().toLocalDate().plusDays(1))
-				? false: true;
+			if(validateBooking(bookingEntity.getCarsId().getCarID(),
+					bookingEntity.getLeaseStartDate().toLocalDate(),
+					bookingEntity.getLeaseEndDate().toLocalDate())) {
+				
+				bookingEntity.setBookingDate(getTodayDate()); //for setting the booking date is today local date
+				
+				CarEntity carStatus = carRepository.findById(bookingEntity.getCarsId().getCarID()).orElseThrow(() -> new RuntimeException("car not found"));
+				carStatus.setCarStatus("booked");  //two lines for setting the car status as booked
+				
+				carRepository.save(carStatus);
+				
+				bookingRepository.save(bookingEntity);
+				
+				
+				return ResponseEntity.accepted().body("date are valid");
+			}
+			 
+//			 List<CarEntity> carList=  carRepository.findAll().stream().filter(e->e.getCarStatus().equalsIgnoreCase("active")).toList();
+			 } else
+				 return ResponseEntity.badRequest().body("booking date is invalid");
+		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 
 	}
-// validate booking start Date
-	public static Boolean validateStartDate(BookingEntity booking) {
-		
-		return booking.getLeaseStartDate().toLocalDate().
-				isBefore(getTodayDate().plusDays(1)) ? false : true;
-	}
 
-
-
-
+	
+	
+	//to get car by after date is available
 	public List<CarEntity> getCarByDate(BookingEntity bookingEntity) {
-		// TODO Auto-generated method stub
-		
-		List<CarEntity> carList= carRepository.findAvailableCars(bookingEntity.getLeaseStartDate().toLocalDate(),
-				bookingEntity.getLeaseEndDate().toLocalDate());
-		return  carList;
-	//	System.err.println(carList);
+		List<CarEntity> carList = carRepository.findAvailableCars(bookingEntity.getLeaseStartDate().toLocalDate(),bookingEntity.getLeaseEndDate().toLocalDate());
+		return carList;	
+		}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	// getting Local date Formatted version
+	public static LocalDate getTodayDate() { LocalDate today = LocalDate.now();
+	DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	dateformatter.format(today);
+	return today;
 	}
+	
+
+	// validate the give dates are not taken 
+	public  boolean validateBooking(Integer carId, LocalDate startDate, LocalDate endDate) {
+		return bookingRepository.isCarAlreadyBooked(carId, startDate, endDate);
+	}
+
+	// validate booking start Date
+	public static Boolean validateStartDate(BookingEntity booking) { return booking.getLeaseStartDate().toLocalDate().isBefore(getTodayDate().plusDays(1)) ? false : true; }
+
+	// validate booking end Date
+	public static Boolean validateEndDate(BookingEntity booking) { return booking.getLeaseEndDate().toLocalDate().isBefore(booking.getLeaseStartDate().toLocalDate().plusDays(1))? false: true;}
+
+
+
 
 }
 

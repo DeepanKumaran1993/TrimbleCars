@@ -19,8 +19,9 @@ import lombok.extern.log4j.Log4j2;
 public class UserService {
 
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 
+	// save User Details
 	public ResponseEntity<String> saveUser(UserManagementEntity user) {
 
 		userRepo.save(user);
@@ -30,30 +31,34 @@ public class UserService {
 
 	}
 
+	// getAllUser
 	public ResponseEntity<List<UserManagementEntity>> getAllUsers() {
 		// TODO Auto-generated method stub
 
 		return ResponseEntity.ok(userRepo.findAll());
 	}
 
+	// To Get User by it role in this call Admin should pass the user_id then
+	// only it's will give date or else it will not response
 	public ResponseEntity<UserManagementEntity> getUserByRole(String userId, String adminId) {
 		// TODO Auto-generated method stub
 
 		Optional<UserManagementEntity> verifyRole = userRepo.findById(Integer.parseInt(adminId)).stream()
 				.filter(e -> e.getUserRole().equals("admin")).findFirst();
 		System.err.println(verifyRole.isPresent());
-		
+
 		if (verifyRole.isPresent())
 			return ResponseEntity.ok(userRepo.findById(Integer.parseInt(userId)).orElse(null));
-		// return new ResponseEntity <UserManagementEntity>
-		// (userRepo.findById(Integer.parseInt(userId)),HttpStatus.ACCEPTED);
+		/*
+		 * return new ResponseEntity <UserManagementEntity>
+		 * (userRepo.findById(Integer.parseInt(userId)),HttpStatus.ACCEPTED);
+		 */
 		else
 			return new ResponseEntity<UserManagementEntity>(HttpStatus.NOT_ACCEPTABLE);
 
 	}
 
-// for updating the users details for admin user.
-
+	// for updating the users details for admin user.
 	public ResponseEntity<String> updateUserById(UserManagementEntity user, Integer userId) {
 		// TODO Auto-generated method stub
 
