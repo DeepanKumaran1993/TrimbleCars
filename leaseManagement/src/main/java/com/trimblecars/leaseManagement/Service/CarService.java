@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Service;
+package com.trimblecars.leaseManagement.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.trimblecars.leaseManagement.Entity.CarEntity;
-import com.trimblecars.leaseManagement.Repository.CarRepository;
+import com.trimblecars.leaseManagement.entity.CarEntity;
+import com.trimblecars.leaseManagement.repository.CarRepository;
 
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;

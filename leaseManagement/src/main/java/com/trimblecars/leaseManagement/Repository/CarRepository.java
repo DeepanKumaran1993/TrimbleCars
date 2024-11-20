@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Repository;
+package com.trimblecars.leaseManagement.repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.trimblecars.leaseManagement.Entity.CarEntity;
-import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
+import com.trimblecars.leaseManagement.entity.CarEntity;
+import com.trimblecars.leaseManagement.entity.UserManagementEntity;
 
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, Integer> {

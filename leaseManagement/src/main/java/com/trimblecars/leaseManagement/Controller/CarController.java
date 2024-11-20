@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Controller;
+package com.trimblecars.leaseManagement.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trimblecars.leaseManagement.Entity.CarEntity;
-import com.trimblecars.leaseManagement.Service.CarService;
+import com.trimblecars.leaseManagement.entity.CarEntity;
+import com.trimblecars.leaseManagement.service.CarService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +27,7 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 
-	@PostMapping(path = "/saveCar")
+	@PostMapping(path = "/savecar")
 	public ResponseEntity<String> addCarDetail(@RequestBody CarEntity car) {
 
 		log.info("Create a car entity : {}", car.toString());
@@ -36,13 +36,13 @@ public class CarController {
 		return carService.saveCar(car);
 	}
 
-	@GetMapping(path = "/getCar/{carId}")
+	@GetMapping(path = "/getcar/{carId}")
 	public ResponseEntity<?> getCarDetails(@PathVariable Integer carId) {
 		log.debug("find car By Id Owner Id : {}", carId);
 		return carService.getCarsByOwnerId(carId);
 	}
 
-	@PutMapping(path = "/editCar")
+	@PutMapping(path = "/editcar")
 	public ResponseEntity<CarEntity> updateCarDetails(@RequestBody CarEntity car, @PathVariable Integer carId) {
 		log.trace("Entered in Update Car details using Car Id :{} ", carId);
 

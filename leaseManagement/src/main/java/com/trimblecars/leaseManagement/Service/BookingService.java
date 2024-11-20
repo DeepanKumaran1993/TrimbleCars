@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Service;
+package com.trimblecars.leaseManagement.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,11 +15,12 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.trimblecars.leaseManagement.Entity.BookingEntity;
-import com.trimblecars.leaseManagement.Entity.CarEntity;
-import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
-import com.trimblecars.leaseManagement.Repository.BookingRepository;
-import com.trimblecars.leaseManagement.Repository.CarRepository;
+import com.trimblecars.leaseManagement.entity.BookingEntity;
+import com.trimblecars.leaseManagement.entity.CarEntity;
+import com.trimblecars.leaseManagement.entity.UserManagementEntity;
+import com.trimblecars.leaseManagement.repository.BookingRepository;
+import com.trimblecars.leaseManagement.repository.CarRepository;
+import com.trimblecars.leaseManagement.repository.UserRepository;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,8 @@ public class BookingService {
 	@Autowired
 	private CarRepository carRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
 
 
 	public ResponseEntity<String> getBooking(BookingEntity bookingEntity) {
@@ -42,18 +45,19 @@ public class BookingService {
 
 		// get booked user count from table based on user_id
 		Integer bookedCarsCount = bookingRepository.countBookedCarsByUser(bookingEntity.getUserId().getUserId());
+		System.err.println(bookedCarsCount);
 
-//		 System.err.println(bookedCarsCount);
-//	        if (bookedCarsCount >= 2) {
-//	            throw new RuntimeException("User cannot book more than 2 cars with status 'Booked'.");
-//	        }
-
+		String userRole = userRepository.getRoleByUserId(bookingEntity.getUserId().getUserId());
 		
-		// date validation for booking *if True cars are already booked else is avaliable
-
-		if (bookedCarsCount <= 2 ) {
+		  log.debug(" role of the User : *{}*",userRole);
+		
+		 log.debug("user boolean {}",bookedCarsCount <= 2 && userRole.equalsIgnoreCase("user"));
+		if (bookedCarsCount <= 2 && userRole.equalsIgnoreCase("user") ) {
 			
-			if(validateBooking(bookingEntity.getCarsId().getCarID(),
+			log.debug("VAlidate boolean {}",validateBooking(bookingEntity.getCarsId().getCarID(),
+					bookingEntity.getLeaseStartDate().toLocalDate(),
+					bookingEntity.getLeaseEndDate().toLocalDate()));
+			if(!validateBooking(bookingEntity.getCarsId().getCarID(),
 					bookingEntity.getLeaseStartDate().toLocalDate(),
 					bookingEntity.getLeaseEndDate().toLocalDate())) {
 				

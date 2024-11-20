@@ -14,8 +14,8 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.trimblecars.*")
 //@EnableSwagger2
+@EnableWebMvc
 @OpenAPIDefinition
-//@EnableWebMvc
 public class LeaseManagementApplication {
 
 	private static Logger logger=LoggerFactory.getLogger(LeaseManagementApplication.class);

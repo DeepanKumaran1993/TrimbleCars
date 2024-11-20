@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Entity;
+package com.trimblecars.leaseManagement.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
 @Builder
 @Table(name = "user_management")
 @Entity

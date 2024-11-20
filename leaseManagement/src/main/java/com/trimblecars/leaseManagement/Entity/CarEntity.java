@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Entity;
+package com.trimblecars.leaseManagement.entity;
 
 import java.time.LocalDate;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,7 +25,7 @@ import com.trimblecars.leaseManagement.deserializer.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Slf4j
+
 //@Table(name="car_list")
 public class CarEntity {
 

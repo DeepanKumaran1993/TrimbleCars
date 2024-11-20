@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Service;
+package com.trimblecars.leaseManagement.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
-import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
-import com.trimblecars.leaseManagement.Repository.UserRepository;
+import com.trimblecars.leaseManagement.entity.UserManagementEntity;
+import com.trimblecars.leaseManagement.repository.UserRepository;
 
 import lombok.Builder;
 import lombok.extern.log4j.Log4j2;

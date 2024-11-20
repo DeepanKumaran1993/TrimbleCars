@@ -1,4 +1,4 @@
-package com.trimblecars.leaseManagement.Controller;
+package com.trimblecars.leaseManagement.controller;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trimblecars.leaseManagement.Entity.BookingEntity;
-import com.trimblecars.leaseManagement.Entity.CarEntity;
-import com.trimblecars.leaseManagement.Service.BookingService;
+import com.trimblecars.leaseManagement.entity.BookingEntity;
+import com.trimblecars.leaseManagement.entity.CarEntity;
+import com.trimblecars.leaseManagement.service.BookingService;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 
-	@PostMapping(path = "/getBooking")
+	@PostMapping(path = "/getbooking")
 	public ResponseEntity<String> addBooking(@RequestBody BookingEntity bookingEntity) {
 		log.info("Create a Booking");
 
@@ -39,7 +39,7 @@ public class BookingController {
 	}
 
 	// this call for getting avaliable car from DateBase
-	@PostMapping("/getCars")
+	@PostMapping("/getcars")
 	public ResponseEntity<List<CarEntity>> getAvailableCarList(@RequestBody BookingEntity bookingEntity) {
 	log.info("Car list from exact booking date with user startDate : {} , EndDate :{} "
 			,bookingEntity.getLeaseStartDate());
