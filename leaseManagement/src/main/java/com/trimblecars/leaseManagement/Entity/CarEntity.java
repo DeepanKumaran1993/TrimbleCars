@@ -76,7 +76,7 @@ private String carFuelType;
 private String carVinNumber;
 
 
-@NotBlank
+
 @OneToOne
 //@MapsId
 @JoinColumn(name="user_id")

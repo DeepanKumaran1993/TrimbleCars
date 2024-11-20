@@ -1,0 +1,371 @@
+{
+  "openapi" : "3.0.1",
+  "servers" : [ {
+    "url" : "http://localhost:8081",
+    "description" : "Generated server url"
+  } ],
+  "paths" : {
+    "/user/edituser/{userId}" : {
+      "put" : {
+        "tags" : [ "user-controller" ],
+        "operationId" : "editUserDetails",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserManagementEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/editcar" : {
+      "put" : {
+        "tags" : [ "car-controller" ],
+        "operationId" : "updateCarDetails",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CarEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CarEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/saveuser" : {
+      "post" : {
+        "tags" : [ "user-controller" ],
+        "operationId" : "saveUser",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserManagementEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/savecar" : {
+      "post" : {
+        "tags" : [ "car-controller" ],
+        "operationId" : "addCarDetail",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CarEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking/carslist" : {
+      "post" : {
+        "tags" : [ "booking-controller" ],
+        "operationId" : "getAvailableCarList",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BookingEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CarEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking/booking" : {
+      "post" : {
+        "tags" : [ "booking-controller" ],
+        "operationId" : "addBooking",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BookingEntity"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/userrole/{userId}" : {
+      "get" : {
+        "tags" : [ "user-controller" ],
+        "operationId" : "getUserRole",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "adminId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserManagementEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/getuser" : {
+      "get" : {
+        "tags" : [ "user-controller" ],
+        "operationId" : "getAllUser",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/UserManagementEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/getcar/{carId}" : {
+      "get" : {
+        "tags" : [ "car-controller" ],
+        "operationId" : "getCarDetails",
+        "parameters" : [ {
+          "name" : "carId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "UserManagementEntity" : {
+        "type" : "object",
+        "properties" : {
+          "userId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "userName" : {
+            "type" : "string"
+          },
+          "userEmailId" : {
+            "type" : "string"
+          },
+          "userRole" : {
+            "type" : "string"
+          },
+          "userContactNumber" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "userCity" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CarEntity" : {
+        "type" : "object",
+        "properties" : {
+          "carID" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "carType" : {
+            "type" : "string"
+          },
+          "carModel" : {
+            "type" : "string"
+          },
+          "carMake" : {
+            "type" : "string"
+          },
+          "carTransMissionType" : {
+            "type" : "string"
+          },
+          "carStatus" : {
+            "type" : "string"
+          },
+          "carFuelType" : {
+            "type" : "string"
+          },
+          "carVinNumber" : {
+            "type" : "string"
+          },
+          "ownerID" : {
+            "$ref" : "#/components/schemas/UserManagementEntity"
+          },
+          "createdDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "lastModifiedDate" : {
+            "type" : "string",
+            "format" : "date"
+          }
+        }
+      },
+      "BookingEntity" : {
+        "type" : "object",
+        "properties" : {
+          "bookingID" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "leaseStartDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "leaseEndDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "bookingDate" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "bookingStatus" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "$ref" : "#/components/schemas/UserManagementEntity"
+          },
+          "carsId" : {
+            "$ref" : "#/components/schemas/CarEntity"
+          }
+        }
+      }
+    }
+  }
+}
