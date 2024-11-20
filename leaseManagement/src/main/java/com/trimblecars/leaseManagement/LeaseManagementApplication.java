@@ -6,12 +6,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.trimblecars.*")
 //@EnableSwagger2
+@OpenAPIDefinition
+//@EnableWebMvc
 public class LeaseManagementApplication {
 
 	private static Logger logger=LoggerFactory.getLogger(LeaseManagementApplication.class);

@@ -15,42 +15,36 @@ import com.trimblecars.leaseManagement.Entity.BookingEntity;
 import com.trimblecars.leaseManagement.Entity.CarEntity;
 import com.trimblecars.leaseManagement.Service.BookingService;
 
-import ch.qos.logback.classic.Logger;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
-@RequestMapping(path="/booking")
+@RequestMapping(path = "/booking")
 public class BookingController {
-
 
 	@Autowired
 	private BookingService bookingService;
-	
-	
-	@PostMapping(path="/getBooking")
-	public ResponseEntity<String> addBooking(@RequestBody BookingEntity bookingEntity)
-	{
-		if(BookingService.validateStartDate(bookingEntity)&&bookingService.validateEndDate(bookingEntity))
+
+	@PostMapping(path = "/getBooking")
+	public ResponseEntity<String> addBooking(@RequestBody BookingEntity bookingEntity) {
+		log.info("Create a Booking");
+
+		if (BookingService.validateStartDate(bookingEntity) && BookingService.validateEndDate(bookingEntity)) {
+			log.debug("validate the user Booking date in controller for the date before booking. in controller" + " ",
+					BookingService.validateStartDate(bookingEntity) && bookingService.validateEndDate(bookingEntity));
 			return bookingService.getBooking(bookingEntity);
-		else
-			return ResponseEntity.badRequest().body("date are invalid");	
+		} else
+			return ResponseEntity.badRequest().body("date are invalid");
 	}
-	
-	
-	
-	//this call for getting avaliable car from DateBase
+
+	// this call for getting avaliable car from DateBase
 	@PostMapping("/getCars")
-	public ResponseEntity<List<CarEntity>> getAvailableCarList(@RequestBody BookingEntity bookingEntity){
-	
-		return new ResponseEntity<List< CarEntity>>(bookingService.getCarByDate( bookingEntity),HttpStatus.OK);
+	public ResponseEntity<List<CarEntity>> getAvailableCarList(@RequestBody BookingEntity bookingEntity) {
+	log.info("Car list from exact booking date with user startDate : {} , EndDate :{} "
+			,bookingEntity.getLeaseStartDate());
+		
+		return new ResponseEntity<List<CarEntity>>(bookingService.getCarByDate(bookingEntity), HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

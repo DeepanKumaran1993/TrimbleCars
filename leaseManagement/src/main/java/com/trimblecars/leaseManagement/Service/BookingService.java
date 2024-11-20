@@ -51,7 +51,7 @@ public class BookingService {
 		
 		// date validation for booking *if True cars are already booked else is avaliable
 
-		if (bookedCarsCount >= 2 ) {
+		if (bookedCarsCount <= 2 ) {
 			
 			if(validateBooking(bookingEntity.getCarsId().getCarID(),
 					bookingEntity.getLeaseStartDate().toLocalDate(),
@@ -72,8 +72,9 @@ public class BookingService {
 			 
 //			 List<CarEntity> carList=  carRepository.findAll().stream().filter(e->e.getCarStatus().equalsIgnoreCase("active")).toList();
 			 } else
-				 return ResponseEntity.badRequest().body("booking date is invalid");
-		return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+				 return ResponseEntity.badRequest().body("car not found");
+			
+		return new ResponseEntity<String>("maximum booking reached ",HttpStatus.BAD_REQUEST);
 
 	}
 

@@ -13,9 +13,12 @@ import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
 import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
 import com.trimblecars.leaseManagement.Repository.UserRepository;
 
+import lombok.Builder;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UserService {
 
 	@Autowired
@@ -23,36 +26,29 @@ public class UserService {
 
 	// save User Details
 	public ResponseEntity<String> saveUser(UserManagementEntity user) {
-
+		log.trace("Attempting to save user in service layer");
 		userRepo.save(user);
-		System.out.println();
-
-		return new ResponseEntity<String>("it's Credated ", HttpStatus.CREATED);
-
+		return new ResponseEntity<String>("it's Created ", HttpStatus.CREATED);
 	}
 
 	// getAllUser
 	public ResponseEntity<List<UserManagementEntity>> getAllUsers() {
 		// TODO Auto-generated method stub
-
+		log.trace("Get All Users");
 		return ResponseEntity.ok(userRepo.findAll());
 	}
 
-	// To Get User by it role in this call Admin should pass the user_id then
-	// only it's will give date or else it will not response
+	// To Get User by it role in this call Admin should pass the user_id then only it's will give date or else it will not response
 	public ResponseEntity<UserManagementEntity> getUserByRole(String userId, String adminId) {
 		// TODO Auto-generated method stub
-
+		log.trace("get user by Role Only Admin have a permission");
 		Optional<UserManagementEntity> verifyRole = userRepo.findById(Integer.parseInt(adminId)).stream()
 				.filter(e -> e.getUserRole().equals("admin")).findFirst();
-		System.err.println(verifyRole.isPresent());
-
+		log.debug("to Verify AdminId is Present it's return Boolean Value :{} " ,verifyRole.isPresent());
+	
 		if (verifyRole.isPresent())
 			return ResponseEntity.ok(userRepo.findById(Integer.parseInt(userId)).orElse(null));
-		/*
-		 * return new ResponseEntity <UserManagementEntity>
-		 * (userRepo.findById(Integer.parseInt(userId)),HttpStatus.ACCEPTED);
-		 */
+		/* * return new ResponseEntity <UserManagementEntity> * (userRepo.findById(Integer.parseInt(userId)),HttpStatus.ACCEPTED);*/
 		else
 			return new ResponseEntity<UserManagementEntity>(HttpStatus.NOT_ACCEPTABLE);
 
@@ -65,13 +61,14 @@ public class UserService {
 		Optional<UserManagementEntity> oldUser = userRepo.findById(userId);
 		if (oldUser.isPresent() && oldUser.get().getUserRole().equals("admin")) {
 
+			
 			oldUser.get().setUserCity(user.getUserCity());
 			oldUser.get().setUserContactNumber(user.getUserContactNumber());
 			oldUser.get().setUserEmailId(user.getUserEmailId());
 			oldUser.get().setUserName(user.getUserName());
 			oldUser.get().setUserRole(user.getUserRole());
 
-			userRepo.save(oldUser);
+			userRepo.save(oldUser.get());
 			return new ResponseEntity<String>("Created", HttpStatus.CREATED);
 		} else
 			return new ResponseEntity<String>("Id or Role is mismatch", HttpStatus.valueOf(" id or role mismatch"));

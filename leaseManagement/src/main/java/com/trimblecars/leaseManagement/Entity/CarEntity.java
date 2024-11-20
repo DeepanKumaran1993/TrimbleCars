@@ -10,12 +10,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+
 import com.trimblecars.leaseManagement.deserializer.*;
 
 @Entity
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Slf4j
 //@Table(name="car_list")
 public class CarEntity {
 
@@ -38,6 +48,7 @@ public class CarEntity {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name="car_id")
 private Integer carID;
+
 
 
 @Column(name="car_type")
@@ -65,6 +76,7 @@ private String carFuelType;
 private String carVinNumber;
 
 
+@NotBlank
 @OneToOne
 //@MapsId
 @JoinColumn(name="user_id")
@@ -76,124 +88,5 @@ private LocalDate createdDate;
 
 @Column(name="car_last_modified")
 private LocalDate lastModifiedDate;
-
-public Integer getCarID() {
-	return carID;
-}
-
-public void setCarID(Integer carID) {
-	this.carID = carID;
-}
-
-public String getCarType() {
-	return carType;
-}
-
-public void setCarType(String carType) {
-	this.carType = carType;
-}
-
-public String getCarModel() {
-	return carModel;
-}
-
-public void setCarModel(String carModel) {
-	this.carModel = carModel;
-}
-
-public String getCarMake() {
-	return carMake;
-}
-
-public void setCarMake(String carMake) {
-	this.carMake = carMake;
-}
-
-public String getCarTransMissionType() {
-	return carTransMissionType;
-}
-
-public void setCarTransMissionType(String carTransMissionType) {
-	this.carTransMissionType = carTransMissionType;
-}
-
-public String getCarStatus() {
-	return carStatus;
-}
-
-public void setCarStatus(String carStatus) {
-	this.carStatus = carStatus;
-}
-
-public String getCarFuelType() {
-	return carFuelType;
-}
-
-public void setCarFuelType(String carFuelType) {
-	this.carFuelType = carFuelType;
-}
-
-public String getCarVinNumber() {
-	return carVinNumber;
-}
-
-public void setCarVinNumber(String carVinNumber) {
-	this.carVinNumber = carVinNumber;
-}
-
-public UserManagementEntity getOwnerID() {
-	return ownerID;
-}
-
-public void setOwnerID(UserManagementEntity ownerID) {
-	this.ownerID = ownerID;
-}
-
-public LocalDate getCreatedDate() {
-	return createdDate;
-}
-
-public void setCreatedDate(LocalDate createdDate) {
-	this.createdDate = createdDate;
-}
-
-public LocalDate getLastModifiedDate() {
-	return lastModifiedDate;
-}
-
-public void setLastModifiedDate(LocalDate lastModifiedDate) {
-	this.lastModifiedDate = lastModifiedDate;
-}
-
-@Override
-public String toString() {
-	return "CarEntity [carID=" + carID + ", carType=" + carType + ", carModel=" + carModel + ", carMake=" + carMake
-			+ ", carTransMissionType=" + carTransMissionType + ", carStatus=" + carStatus + ", carFuelType="
-			+ carFuelType + ", carVinNumber=" + carVinNumber + ", ownerID=" + ownerID + ", createdDate=" + createdDate
-			+ ", lastModifiedDate=" + lastModifiedDate + "]";
-}
-
-public CarEntity(Integer carID, String carType, String carModel, String carMake, String carTransMissionType,
-		String carStatus, String carFuelType, String carVinNumber, UserManagementEntity ownerID, LocalDate createdDate,
-		LocalDate lastModifiedDate) {
-	super();
-	this.carID = carID;
-	this.carType = carType;
-	this.carModel = carModel;
-	this.carMake = carMake;
-	this.carTransMissionType = carTransMissionType;
-	this.carStatus = carStatus;
-	this.carFuelType = carFuelType;
-	this.carVinNumber = carVinNumber;
-	this.ownerID = ownerID;
-	this.createdDate = createdDate;
-	this.lastModifiedDate = lastModifiedDate;
-}
-
-public CarEntity() {
-	super();
-}
-
-
 
 }

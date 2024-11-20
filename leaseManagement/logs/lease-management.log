@@ -1,0 +1,37 @@
+2024-11-20T05:26:50.661+05:30  INFO 27160 --- [main] c.t.l.LeaseManagementApplication         : Starting LeaseManagementApplication using Java 17.0.9 with PID 27160 (C:\Users\deepa\Downloads\Telegram Desktop\leaseManagement1\build\classes\java\main started by deepa in C:\Users\deepa\Downloads\Telegram Desktop\leaseManagement1)
+2024-11-20T05:26:50.662+05:30 DEBUG 27160 --- [main] c.t.l.LeaseManagementApplication         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-20T05:26:50.662+05:30  INFO 27160 --- [main] c.t.l.LeaseManagementApplication         : No active profile set, falling back to 1 default profile: "default"
+2024-11-20T05:26:51.312+05:30  INFO 27160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-20T05:26:51.382+05:30  INFO 27160 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 3 JPA repository interfaces.
+2024-11-20T05:26:52.013+05:30  INFO 27160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-20T05:26:52.027+05:30  INFO 27160 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-20T05:26:52.028+05:30  INFO 27160 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-20T05:26:52.126+05:30  INFO 27160 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-20T05:26:52.126+05:30  INFO 27160 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1408 ms
+2024-11-20T05:26:52.173+05:30  INFO 27160 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-20T05:26:52.349+05:30  INFO 27160 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@481b2f10
+2024-11-20T05:26:52.351+05:30  INFO 27160 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-20T05:26:52.359+05:30  INFO 27160 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/leaseManagement'
+2024-11-20T05:26:52.487+05:30  INFO 27160 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-20T05:26:52.576+05:30  INFO 27160 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-20T05:26:52.634+05:30  INFO 27160 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-20T05:26:53.022+05:30  INFO 27160 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-20T05:26:53.114+05:30  WARN 27160 --- [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2024-11-20T05:26:53.134+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@39a3984c) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4404a6b)
+2024-11-20T05:26:53.134+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@671da0f9) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4d2f9e3c)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@686b1e2d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6e7e0259)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@646e6d07) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5501d1c8)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@652b3733) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7b598d05)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6cc8c13c) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@371cd2fc)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@b32e983) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3c346c45)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@16df9bde) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@478530cb)
+2024-11-20T05:26:53.135+05:30 DEBUG 27160 --- [main] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5be7b749) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@44aeae34)
+2024-11-20T05:26:54.162+05:30  INFO 27160 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-20T05:26:54.278+05:30  INFO 27160 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-20T05:26:54.510+05:30  INFO 27160 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-20T05:26:55.095+05:30  WARN 27160 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-20T05:26:55.419+05:30  INFO 27160 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-20T05:26:55.427+05:30  INFO 27160 --- [main] c.t.l.LeaseManagementApplication         : Started LeaseManagementApplication in 5.26 seconds (process running for 5.769)
+2024-11-20T05:27:08.425+05:30  INFO 27160 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-20T05:27:08.425+05:30  INFO 27160 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-20T05:27:08.426+05:30  INFO 27160 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

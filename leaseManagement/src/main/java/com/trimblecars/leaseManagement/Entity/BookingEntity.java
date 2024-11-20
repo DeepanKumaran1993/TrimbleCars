@@ -18,10 +18,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Slf4j
 public class BookingEntity {
 
 	/*
@@ -61,83 +68,6 @@ public class BookingEntity {
 	@JsonDeserialize(using = CarEntityDeserializer.class)
 	private CarEntity carsId;
 
-	public BookingEntity() {
-		super();
-	}
 
-	public BookingEntity(Integer bookingID, Date leaseStartDate, Date leaseEndDate, LocalDate bookingDate,
-			String bookingStatus, UserManagementEntity userId, CarEntity carsId) {
-		super();
-		this.bookingID = bookingID;
-		this.leaseStartDate = leaseStartDate;
-		this.leaseEndDate = leaseEndDate;
-		this.bookingDate = bookingDate;
-		this.bookingStatus = bookingStatus;
-		this.userId = userId;
-		this.carsId = carsId;
-	}
-
-	public Integer getBookingID() {
-		return bookingID;
-	}
-
-	public void setBookingID(Integer bookingID) {
-		this.bookingID = bookingID;
-	}
-
-	public Date getLeaseStartDate() {
-		return leaseStartDate;
-	}
-
-	public void setLeaseStartDate(Date leaseStartDate) {
-		this.leaseStartDate = leaseStartDate;
-	}
-
-	public Date getLeaseEndDate() {
-		return leaseEndDate;
-	}
-
-	public void setLeaseEndDate(Date leaseEndDate) {
-		this.leaseEndDate = leaseEndDate;
-	}
-
-	public LocalDate getBookingDate() {
-		return bookingDate;
-	}
-
-	public void setBookingDate(LocalDate bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-
-	public String getBookingStatus() {
-		return bookingStatus;
-	}
-
-	public void setBookingStatus(String bookingStatus) {
-		this.bookingStatus = bookingStatus;
-	}
-
-	public UserManagementEntity getUserId() {
-		return userId;
-	}
-
-	public void setUserId(UserManagementEntity userId) {
-		this.userId = userId;
-	}
-
-	public CarEntity getCarsId() {
-		return carsId;
-	}
-
-	public void setCarsId(CarEntity carsId) {
-		this.carsId = carsId;
-	}
-
-	@Override
-	public String toString() {
-		return "BookingEntity [bookingID=" + bookingID + ", leaseStartDate=" + leaseStartDate + ", leaseEndDate="
-				+ leaseEndDate + ", bookingDate=" + bookingDate + ", bookingStatus=" + bookingStatus + ", userId="
-				+ userId + ", carsId=" + carsId + "]";
-	}
 
 }

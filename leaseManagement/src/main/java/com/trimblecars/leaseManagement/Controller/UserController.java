@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trimblecars.leaseManagement.Entity.UserManagementEntity;
 import com.trimblecars.leaseManagement.Service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping(path = "/user")
+@Slf4j
 public class UserController {
 
 	@Autowired
@@ -27,8 +31,7 @@ public class UserController {
 //save userAPI for admin to save the users	
 	@PostMapping(path="/saveUser")
 	public ResponseEntity<String> saveUser(@RequestBody UserManagementEntity request) {
-
-		System.err.println(request.getUserCity());
+		log.trace("Entered to  save User in UserController {}",request.toString());
 		return  userService.saveUser(request);
 	}
 	
@@ -50,7 +53,7 @@ public class UserController {
 	
 
 //edit user role and status for admin uses 
-	@PatchMapping(path="/editUser/{userId}")
+	@PutMapping(path="/editUser/{userId}")
 	public ResponseEntity<String> editUserDetails
 	(@PathVariable Integer userId ,@RequestBody UserManagementEntity user)
 	{
